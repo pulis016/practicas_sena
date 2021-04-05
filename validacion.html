@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validar Login</title>
+    <!--http:/localhost/Mio/Validacion.html-->
+    <script>
+    function validate(form){
+    falla   = validaUser(form.usuario.value)
+    falla  += validaClave(form.clave.value)
+         if (falla == "") return true
+        else {
+            alert(falla); return false
+        }
+    }
+    function validaUser(field){
+    if (field == "") return "Por favor ingrese un nombre de usuario valido\n"
+        else if (field.length < 5) return "el nombre de usuario debe de tener minimo 5 caracteres\n"
+        else if (/[^a-zA-Z0-9_-]/.test(field)) return "solo se permiten caractares de la A-Z\n"
+        return ""
+    }
+    function validaClave(field)
+    {if (field == "") return "Debe ingresar la contraseña. \n " 
+			else if (field.length < 6)
+				return "La contraseña debe tener por lo menos seis caracteres. \n"
+			else if (! /[a-z]/.test(field) &&
+				     ! /[A-Z]/.test(field) &&
+				     ! /[0-9]/.test(field))
+				return "La contraseña requiere a-z, A-Z, 0-9. \n"
+			return ""
+	}
+    </script>
+    
+</head>
+<body>
+    <form action="valida.php" method="post" onsubmit="return validate(this)">
+        <fileset>
+            <legend>Ingreso al Sitio Web</legend>
+            <p>
+                <label>Ingrese Usuario
+                <input type="text" name="usuario">
+                </label>
+            </p>
+            <p>
+                <label>Ingrese Contraseña
+                <input type="password" name="clave">
+                </label>
+            </p>
+            <input type="submit" value="REVISAR">
+        </fileset>
+    </form>
+</body>
+</html>

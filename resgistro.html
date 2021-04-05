@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registro</title>
+</head>
+<!--http:/localhost/mio/registro.html -->
+<style>
+    .registrarse{
+        border: 1px solid red;
+        font: normal 14px helvetica;
+        color: #444444;
+    }
+</style>
+<script>
+    function validate(form){
+        falla  = validanombre(form.nom.value)
+        falla += validaapellido(form.ape.value)
+        falla += validausuario(form.user.value)
+        falla += validapas(form.pass.value)
+        falla += validaedad(form.edad.value)
+        falla += validacorreo(form.email.value)
+        if (falla == "") return true
+        else {
+            alert(falla); return false
+        }
+    }
+    function validanombre(field){
+        return(field == "")? "Debe llenar el campo Nombres. \n" : ""
+    }
+    function validaapellido(field){
+        return(field == "")? "Debe llenar el campo Apellidos. \n" : ""
+    }
+    function validausuario(field){
+        if (field == "") return "Debe llenar el campo Usuario. \n" 
+        else if (field.length <5) return "El campo usuario debe tener 5 caracteres. \n"
+        else if (/[^a-zA-Z0-9_-]/.test(field)) return "Solo se permite de A-Z a-z 0-9 -  en los nombres de usuario"
+        return ""
+    }
+    function validapas(field){
+        if (field == "") return "Debe ingresar la contraseña. \n" 
+			else if (field.length < 6)
+				return "La contraseña debe tener por lo menos seis caracteres. \n"
+			else if(! /[a-z]/.test(field) &&
+				    ! /[A-Z]/.test(field) &&
+				    ! /[0-9]/.test(field))
+				return "La contraseña requiere a-z, A-Z, 0-9. \n"
+			return ""
+    }
+    function validacorreo(field){
+        if(field == "") return "Debe ingresar su correo electronico. \n"
+			else if (!((field.indexOf(".") > 0) &&
+                    (field.indexOf("@") > 0)) ||
+                    /[^a-zA-Z0-9.@_-]/.test(field))
+				return "Su correo es invalido. \n"
+			return ""
+    }
+
+</script>
+<body>
+    <table class="registrarse" border="0" cellpading="2" cellspacing="5" bgcolor="#eeeeee">
+        <th colspan="2" align="center">FORMULARIO DE REGISTRO</th>
+        <form action="user.php" onsubmit="return validate(this)">
+            <tr>
+                <tr>
+                <td>Nombre</td>
+                <td><input type="text" maxlength="32" name="nom"></td>
+                </tr>
+                <tr>
+                <td>Apellido</td>
+                <td><input type="text" maxlength="32" name="ape"></td>
+                </tr>
+                <tr>
+                <td>Usuario</td>
+                <td><input type="text" maxlength="16" name="user"></td>
+                </tr>
+                <tr>
+                <td>Contraseña</td>
+                <td><input type="password" maxlength="32" name="pass"></td>
+                </tr>
+                <tr>
+                <td>Localidad</td>
+                <td>
+                    <select name="localidad">
+                        <option value="1">Ciudad Bolivar</option>
+                        <option value="2">Chapinero</option>
+                        <option value="3">Suba</option>
+                    </select>
+                </td>
+                </tr>
+                <tr>
+                <td>Correo</td>
+                <td><input type="text" maxlength="32" name="correo"></td>
+                <tr>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="VALIDAR">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="listado1.php"><input type="button" value="LISTAR 1"></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="listado2.php"><input type="button" value="LISTAR 2"></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="listado3.php"><input type="button" value="LISTAR 3"></a>
+                </td>
+            </tr>
+        </form>
+    </table>
+</body>
+</html>

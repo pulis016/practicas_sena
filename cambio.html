@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Cambio User</title>
+	<meta charset="utf-8">
+	<script>
+		
+		function validate(form){
+			fail = validateUser(form.usuario.value)
+			fail += validatePassword(form.clave.value)
+			fail += validateNewPassword(form.new.value)
+			if (fail == "") return true
+				else { alert(fail); return false }
+		}
+		function validateUser(field){
+
+			return(field == "") ? "No Digito Usuario \n" : ""
+		}
+
+		function validatePassword(field)
+     	 {
+        return (field == "") ? "No Entro Contraseña.\n" : ""
+     	 }
+    	 
+     	function validateNewPassword(field)
+      {
+        if (field == "") return "No ha ingresado contraseña.\n"
+        else if (field.length < 7)
+          return "La contraseña debe tener almenos 8 caracteres.\n"
+        else if (! /[a-z]/.test(field) &&
+                 ! /[A-Z]/.test(field) &&
+                 ! /[0-9]/.test(field))
+          return "Passwords require one each of a-z, A-Z and 0-9.\n"
+        return ""
+      }
+
+	</script>
+</head>
+<body>
+
+	
+<form method="post" action="cambiar.php" onsubmit="return validate(this)">
+<fieldset>
+	<legend>ASIGNAR NUEVA CONTRASEÑA ALUMNOS</legend>
+		<p>
+	<label>Ingrese User:
+		<input type="text" name="usuario">
+	</label>	
+		</p>
+	<p>
+	<label>Ingrese Contraseña Antigua:
+		<input type="password" name="clave">
+	</label>	
+		</p>
+
+		<p>
+	<label>Ingrese Nueva Contraseña:
+
+		<input type="text" name="new">
+		<p>
+		<strong>Debe contener como minimo 8 caracteres, 1 mayuscula, una miniscula y un num entre 0 y 9</strong>
+		</p>
+	</label>	
+		</p>
+	<p>
+    <input type="submit" value="VERIFICAR">
+    <br>
+    
+  </p>
+
+	
+</fieldset>
+
+</form>
+	
+</body>
+</html>
